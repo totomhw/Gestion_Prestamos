@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Gestion_Prestamos.Models.Prestamo>
+
+@{
+    ViewData["Title"] = "Préstamos";
+}
+
+<h1>Préstamos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar Nuevo Préstamo</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Unidades</th>
+            <th>Fecha Préstamo</th>
+            <th>Fecha Devolución</th>
+            <th>Observaciones</th>
+            <th>Elemento</th>
+            <th>Usuario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.UnidadesPrestadas</td>
+                <td>@item.FechaPrestamo.ToString("dd/MM/yyyy")</td>
+                <td>@item.FechaDevolucion?.ToString("dd/MM/yyyy")</td>
+                <td>@item.Observaciones</td>
+                <td>@item.Elemento.Nombre</td>
+                <td>@item.Usuario.Nombre</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PrestamoId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.PrestamoId" class="btn btn-sm btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.PrestamoId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

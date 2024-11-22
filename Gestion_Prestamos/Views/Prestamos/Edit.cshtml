@@ -1,0 +1,124 @@
+﻿@model Gestion_Prestamos.Models.Prestamo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Prestamo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PrestamoId" />
+            <div class="form-group">
+                <label asp-for="ElementoId" class="control-label"></label>
+                <select asp-for="ElementoId" class="form-control" asp-items="ViewBag.ElementoId"></select>
+                <span asp-validation-for="ElementoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsuarioId" class="control-label"></label>
+                <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
+                <span asp-validation-for="UsuarioId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnidadesPrestadas" class="control-label"></label>
+                <input asp-for="UnidadesPrestadas" class="form-control" />
+                <span asp-validation-for="UnidadesPrestadas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPrestamo" class="control-label"></label>
+                <input asp-for="FechaPrestamo" class="form-control" />
+                <span asp-validation-for="FechaPrestamo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDevolucion" class="control-label"></label>
+                <input asp-for="FechaDevolucion" class="form-control" />
+                <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEntrega" class="control-label"></label>
+                <input asp-for="FechaEntrega" class="form-control" />
+                <span asp-validation-for="FechaEntrega" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observaciones" class="control-label"></label>
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPrestamoCreadoPor" class="control-label"></label>
+                <input asp-for="FechaPrestamoCreadoPor" class="form-control" />
+                <span asp-validation-for="FechaPrestamoCreadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPrestamoCreadoEn" class="control-label"></label>
+                <input asp-for="FechaPrestamoCreadoEn" class="form-control" />
+                <span asp-validation-for="FechaPrestamoCreadoEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPrestamoModificadoPor" class="control-label"></label>
+                <input asp-for="FechaPrestamoModificadoPor" class="form-control" />
+                <span asp-validation-for="FechaPrestamoModificadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPrestamoModificadoEn" class="control-label"></label>
+                <input asp-for="FechaPrestamoModificadoEn" class="form-control" />
+                <span asp-validation-for="FechaPrestamoModificadoEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDevolucionCreadoPor" class="control-label"></label>
+                <input asp-for="FechaDevolucionCreadoPor" class="form-control" />
+                <span asp-validation-for="FechaDevolucionCreadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDevolucionCreadoEn" class="control-label"></label>
+                <input asp-for="FechaDevolucionCreadoEn" class="form-control" />
+                <span asp-validation-for="FechaDevolucionCreadoEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDevolucionModificadoPor" class="control-label"></label>
+                <input asp-for="FechaDevolucionModificadoPor" class="form-control" />
+                <span asp-validation-for="FechaDevolucionModificadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaDevolucionModificadoEn" class="control-label"></label>
+                <input asp-for="FechaDevolucionModificadoEn" class="form-control" />
+                <span asp-validation-for="FechaDevolucionModificadoEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEntregaCreadoPor" class="control-label"></label>
+                <input asp-for="FechaEntregaCreadoPor" class="form-control" />
+                <span asp-validation-for="FechaEntregaCreadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEntregaCreadoEn" class="control-label"></label>
+                <input asp-for="FechaEntregaCreadoEn" class="form-control" />
+                <span asp-validation-for="FechaEntregaCreadoEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEntregaModificadoPor" class="control-label"></label>
+                <input asp-for="FechaEntregaModificadoPor" class="form-control" />
+                <span asp-validation-for="FechaEntregaModificadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEntregaModificadoEn" class="control-label"></label>
+                <input asp-for="FechaEntregaModificadoEn" class="form-control" />
+                <span asp-validation-for="FechaEntregaModificadoEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

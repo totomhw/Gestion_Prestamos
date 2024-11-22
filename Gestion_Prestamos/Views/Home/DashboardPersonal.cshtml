@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Vista Admin";
+}
+
+<h1 class="text-light">Vista Admin</h1>
+
+<p class="text-light">Bienvenido a la vista de administrador. Aquí puedes gestionar todo el contenido disponible en la plataforma:</p>
+
+<div class="admin-menu">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Elementos" asp-action="Index">Elementos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Elementos" asp-action="Main">Elementos info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Reportes" asp-action="PrestamosReporte">Reportes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Inventarios" asp-action="Index">Inventarios</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Prestamos" asp-action="Index">Prestamos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Categorias" asp-action="Index">Prestamos</a>
+        </li>
+    </ul>
+</div>
+
+<style>
+    /* Fondo oscuro y texto claro */
+    body {
+        background-color: #1c1e21;
+        color: #f0f2f5;
+    }
+
+    .admin-menu {
+        margin-top: 20px;
+        background-color: #2c2f33;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+        .admin-menu .nav-link {
+            font-size: 1.1rem;
+            text-align: left;
+            color: #f0f2f5;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+            .admin-menu .nav-link:hover {
+                background-color: #4a4d52;
+                color: #ffffff;
+            }
+
+    /* Encabezado y párrafo de bienvenida */
+    h1, p {
+        color: #f0f2f5;
+    }
+
+    /* Íconos y espaciado */
+    .admin-menu .nav-link i {
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+</style>
+
+<!-- Incluir Font Awesome para los íconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

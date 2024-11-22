@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Sistema de Gestión de Activos y No Activos";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4 mb-4">Bienvenido al Sistema de Gestión de Activos y No Activos</h1>
+    <p class="lead">Administra de manera eficiente todos tus activos, no activos y presta atención a las funcionalidades clave del sistema.</p>
+
+    <!-- Sección de accesos rápidos -->
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Gestión de Activos</h5>
+                    <p class="card-text">Administra los activos de tu organización de manera eficiente.</p>
+                    <a href="@Url.Action("Index", "Elementos")" class="btn btn-primary">Ver Activos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Inventario</h5>
+                    <p class="card-text">Consulta y gestiona el inventario completo de tus elementos.</p>
+                    <a href="@Url.Action("Index", "Inventarios")" class="btn btn-success">Ver Inventario</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Préstamos de Elementos</h5>
+                    <p class="card-text">Lleva el control de los préstamos de tus activos y no activos.</p>
+                    <a href="@Url.Action("Index", "Prestamos")" class="btn btn-warning">Ver Préstamos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de información adicional -->
+    <div class="row mt-5">
+        <div class="col-md-6 mb-4">
+            <div class="card border-light">
+                <div class="card-body">
+                    <h5 class="card-title">Reportes de Préstamos</h5>
+                    <p class="card-text">Genera reportes detallados sobre los préstamos realizados.</p>
+                    <a href="@Url.Action("PrestamosReporte", "Reportes")" class="btn btn-info">Generar Reportes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card border-light">
+                <div class="card-body">
+                    <h5 class="card-title">Usuarios y Roles</h5>
+                    <p class="card-text">Gestiona los usuarios y asigna roles con los permisos necesarios.</p>
+                    <a href="@Url.Action("Index", "Usuarios")" class="btn btn-dark">Gestionar Usuarios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model Gestion_Prestamos.Models.MainViewModel
+
+<h1>Gestión de Activos y No Activos</h1>
+
+<div>
+    <h2>Resumen de Inventario</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Elemento</th>
+                <th>Unidades Totales</th>
+                <th>Unidades Disponibles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Inventario)
+            {
+                <tr>
+                    <td>@item.NombreElemento</td>
+                    <td>@item.UnidadesTotales</td>
+                    <td>@item.UnidadesDisponibles</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h2>Últimos Préstamos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Elemento</th>
+                <th>Usuario</th>
+                <th>Unidades Prestadas</th>
+                <th>Fecha Préstamo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prestamo in Model.PrestamosRecientes)
+            {
+                <tr>
+                    <td>@prestamo.NombreElemento</td>
+                    <td>@prestamo.NombreUsuario</td>
+                    <td>@prestamo.UnidadesPrestadas</td>
+                    <td>@prestamo.FechaPrestamo.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
