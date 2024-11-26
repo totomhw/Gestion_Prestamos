@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Gestion_Prestamos.Models;
+using System.IO;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 
 namespace Gestion_Prestamos.Controllers
 {
@@ -178,5 +183,8 @@ namespace Gestion_Prestamos.Controllers
         {
             return _context.Prestamos.Any(e => e.PrestamoId == id);
         }
+
+        
+
     }
 }

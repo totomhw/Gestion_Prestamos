@@ -2,7 +2,7 @@
 
 <h1>Reporte de Préstamos</h1>
 
-<form method="get">
+<form method="get" asp-controller="Reportes" asp-action="Index">
     <div class="form-group">
         <label for="usuario">Usuario</label>
         <select id="usuario" name="usuario" class="form-control">
@@ -36,6 +36,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Filtrar</button>
+    <button type="submit" formaction="/Reportes/ExportarPDF" class="btn btn-danger">Exportar a PDF</button>
 </form>
 
 <table class="table">
