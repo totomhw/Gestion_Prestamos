@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1 class="text-center mb-4">Dashboard</h1>
+
+<!-- Filtros opcionales -->
+<div class="card mb-4 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">Filtrar Datos</h5>
+        <form id="filterForm" class="row">
+            <div class="col-md-3 mb-2">
+                <label for="fechaInicio" class="form-label">Desde</label>
+                <input type="date" id="fechaInicio" name="fechaInicio" class="form-control">
+            </div>
+            <div class="col-md-3 mb-2">
+                <label for="fechaFin" class="form-label">Hasta</label>
+                <input type="date" id="fechaFin" name="fechaFin" class="form-control">
+            </div>
+            <div class="col-md-3 mb-2">
+                <label for="categoria" class="form-label">Categoría</label>
+                <select id="categoria" name="categoria" class="form-control">
+                    <option value="">Todas</option>
+                    <option value="Electrónica">Electrónica</option>
+                    <option value="Mobiliario">Mobiliario</option>
+                    <option value="Herramientas">Herramientas</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="button" id="filterButton" class="btn btn-primary w-100">Aplicar Filtros</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Contenedor de Gráficos -->
+<div class="row">
+    <div class="col-lg-6 col-md-12 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-center">Préstamos por Mes</h5>
+                <canvas id="prestamosPorMesChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-center">Elementos Más Prestados</h5>
+                <canvas id="elementosMasPrestadosChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-12 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-center">Usuarios Más Activos</h5>
+                <canvas id="usuariosMasActivosChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title text-center">Unidades Totales vs Disponibles</h5>
+                <canvas id="inventarioChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Función para cargar gráficos iniciales
+        function cargarGraficos(data) {
+            // Limpiar gráficos previos si existen
+            Chart.helpers.each(Chart.instances, function (instance) {
+                instance.destroy();
+            });
+
+            // Gráfico de líneas: Préstamos por Mes
+            new Chart(document.getElementById('prestamosPorMesChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: data.prestamosPorMes.map(p => p.mes),
+                    datasets: [{
+                        label: 'Cantidad de Préstamos',
+                        data: data.prestamosPorMes.map(p => p.cantidad),
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                }
+            });
+
+            // Gráfico de barras: Elementos Más Prestados
+            new Chart(document.getElementById('elementosMasPrestadosChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: data.elementosMasPrestados.map(e => e.elemento),
+                    datasets: [{
+                        label: 'Préstamos',
+                        data: data.elementosMasPrestados.map(e => e.prestamos),
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)'
+                    }]
+                }
+            });
+
+            // Gráfico de barras horizontales: Usuarios Más Activos
+            new Chart(document.getElementById('usuariosMasActivosChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: data.usuariosMasActivos.map(u => u.usuario),
+                    datasets: [{
+                        label: 'Préstamos',
+                        data: data.usuariosMasActivos.map(u => u.prestamos),
+                        backgroundColor: 'rgba(255, 159, 64, 0.6)'
+                    }]
+                }
+            });
+
+            // Gráfico de barras apiladas: Unidades Totales vs Disponibles
+            new Chart(document.getElementById('inventarioChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: data.unidadesTotalesDisponibles.map(i => i.elemento),
+                    datasets: [
+                        {
+                            label: 'Unidades Totales',
+                            data: data.unidadesTotalesDisponibles.map(i => i.totales),
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                        },
+                        {
+                            label: 'Unidades Disponibles',
+                            data: data.unidadesTotalesDisponibles.map(i => i.disponibles),
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true }
+                    }
+                }
+            });
+        }
+
+        // Cargar gráficos iniciales
+        $(document).ready(function () {
+            $.getJSON('/Dashboard/Dashboard', function (data) {
+                cargarGraficos(data);
+            });
+        });
+
+        // Filtrar datos dinámicamente
+        $('#filterButton').click(function () {
+            var fechaInicio = $('#fechaInicio').val();
+            var fechaFin = $('#fechaFin').val();
+            var categoria = $('#categoria').val();
+
+            $.ajax({
+                url: '/Dashboard/FiltrarDatos',
+                method: 'POST',
+                data: {
+                    fechaInicio: fechaInicio,
+                    fechaFin: fechaFin,
+                    categoria: categoria
+                },
+                success: function (data) {
+                    cargarGraficos(data);
+                }
+            });
+        });
+    </script>
+}
